@@ -1,7 +1,7 @@
 ﻿{
-    "name":"module-jquery.module",
+    "name":"*.module",
     "version":"0.1.0",
-    "description":"jqery.module for jquery.",
+    "description":"*.module for *.",
     "homepage":"https://github.com/donghanji/modules",
     "author":{
         "name":"donghanji",
