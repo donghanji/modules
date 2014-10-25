@@ -55,7 +55,7 @@
 		'REQUIRE':/(?:^|[^.$])\brequire\s*\(\s*(["'])([^"'\s\)]+)\1\s*\)/g,
 		'REQUIRE_FUN':/^function \(\w*\)/,
 		'MODULENAME':/\/([\w.]+)?(?:\1)?$/,
-		'PLACEHOLDER_DIR':/\{(\S+)?\}(?:\1)?/
+		'PLACEHOLDER_DIR':/\{([^\}\{]+)?\}/g
 	},
 	//status
 	STATUS={
@@ -287,6 +287,20 @@
 		var _config=module.options,
 			_util=module.util,
 			_path=module.path;
+		module.replace=function(dirs,res){
+			var reg=REGX['PLACEHOLDER_DIR'];
+			return res.replace(reg,function(){
+				var args=arguments;
+				if(args.length >=4){
+					var a=args[1],
+						r=dirs[a]||a||'';
+					
+					return args[3].replace(args[3],r);
+				}
+				
+				return args[3];
+			});
+		};
 		/*
 		 * @private
 		 * @desc
@@ -299,17 +313,10 @@
 		module.dirs=function(alias){
 			alias=_util.isObject(alias) ? alias : {};
 			
-			var dirs=_config.dirs,
-				reg=REGX['PLACEHOLDER_DIR'];
-			for(var dir in alias){
-				var ret=reg.exec(alias[dir]),
-					res=alias[dir];
-				if(ret&& ret.length > 1){
-					var r=dirs[ret[1]]||ret[1]||'';
-					res=res.replace(ret[0],r);
-				}
+			var dirs=_config.dirs;
+            for(var dir in alias){
 				
-				alias[dir]=res;
+				alias[dir]=module.replace(dirs,alias[dir]);
 			}
 			
 			return alias;
