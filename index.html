@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>pm.modules</title>
+</head>
+<body>
+<script type="text/javascript" src="./node_modules/pm.js/module.js"></script>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript">
+(function(){
+  function log(name){
+    console.log('--------'+name+'-------');
+  }
+  //jquery.module
+  log('jquery.module');
+	module.declare(['jquery.module'],function(require){
+		var $=require('jquery.module');
+    console.log($);
+	});
+  //zepto.module
+  log('zepto.module');
+  module.declare(['zepto.module'],function(require){
+    var zepto=require('zepto.module');
+    console.log(zepto);
+	});
+  //ajaxfileupload.module
+  log('ajaxfileupload.module');
+  module.declare(['jquery.module','ajaxfileupload.module'],function(require){
+		var $=require('jquery.module');
+    console.log($);
+
+    console.log($.ajaxFileUpload);
+	});
+  //jquery.flexslider.module
+  log('jquery.flexslider.module');
+  module.declare(['jquery.module','jquery.flexslider.module'],function(require){
+		var $=require('jquery.module');
+    console.log($);
+
+    console.log($.flexslider);
+	});
+})();
+</script>
+</body>
+</html>
