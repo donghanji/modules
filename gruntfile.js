@@ -3,7 +3,7 @@
 
 module.exports=function(grunt){
     //
-    var _tasks=['jquery','zepto','ajaxfileupload','flexslider'];
+    var _tasks=['jquery','zepto','ajaxfileupload','flexslider','marked','datetimepicker'];
 
     grunt.initConfig({
         pkg:grunt.file.readJSON('package.json'),
@@ -26,6 +26,22 @@ module.exports=function(grunt){
             flexslider: {
                 src: ['src/jquery.flexslider/jquery.flexslider.module.start.js','libs/jquery.flexslider/jquery.flexslider.js','src/jquery.flexslider/jquery.flexslider.module.end.js'],//
                 dest: 'dist/jquery.flexslider.module.js'//
+            },
+            marked: {
+                src: ['src/marked/marked.module.start.js','libs/marked/marked.js','src/marked/marked.module.end.js'],//
+                dest: 'dist/marked.module.js'//
+            },
+            marked: {
+                src: ['src/marked/marked.module.start.js','libs/marked/marked.js','src/marked/marked.module.end.js'],//
+                dest: 'dist/marked.module.js'//
+            },
+            'bootstrap-datetimepicker':{
+                src: ['src/bootstrap-datetimepicker/bootstrap-datetimepicker.module.start.js','libs/bootstrap-datetimepicker/bootstrap-datetimepicker.js','src/bootstrap-datetimepicker/bootstrap-datetimepicker.module.end.js'],//
+                dest: 'dist/bootstrap-datetimepicker/bootstrap-datetimepicker.module.js'//
+            },
+            'datetimepicker':{
+                src: ['src/bootstrap-datetimepicker/datetimepicker.start.js','src/bootstrap-datetimepicker/datetimepicker.end.js'],//
+                dest: 'dist/bootstrap-datetimepicker/datetimepicker.js'//
             }
         },
         uglify: {
@@ -44,14 +60,40 @@ module.exports=function(grunt){
             flexslider: {
                 src: 'dist/jquery.flexslider.module.js',//
                 dest: 'dist/jquery.flexslider.module.min.js'//
+            },
+            marked: {
+                src: 'dist/marked.module.js',//
+                dest: 'dist/marked.module.min.js'//
+            },
+            'bootstrap-datetimepicker': {
+                src: ['dist/bootstrap-datetimepicker/bootstrap-datetimepicker.module.js'],//
+                dest: 'dist/bootstrap-datetimepicker/bootstrap-datetimepicker.module.min.js'//
+            },
+            'bootstrap-datetimepicker-lan': {
+                expand: true,
+                cwd:'libs/bootstrap-datetimepicker/locales/',
+                src: ['*.js'],//
+                dest: 'dist/bootstrap-datetimepicker/locales/'//
+            },
+            'datetimepicker': {
+                src: ['dist/bootstrap-datetimepicker/datetimepicker.js'],//
+                dest: 'dist/bootstrap-datetimepicker/datetimepicker.min.js'//
+            },
+        },
+        /*copy:{
+            'bootstrap-datetimepicker':{
+                cwd:'libs/bootstrap-datetimepicker/locales/',
+                src:['*.js'],//
+                dest:'dist/bootstrap-datetimepicker/locales/'
             }
-        }
+        }*/
     });
     //
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     //
-    grunt.registerTask('default',['concat','uglify']);
+    grunt.registerTask('default',['concat','uglify'/*,'copy'*/]);
 
     //regist task
     _tasks.forEach(function(value,index){
