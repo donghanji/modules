@@ -16,7 +16,7 @@ module.exports=function(grunt){
                 dest: 'dist/jquery.module.js'//
             },
             zepto:{
-                src: ['src/zepto/zepto.module.start.js','libs/zepto/src/zepto.js','libs/zepto/src/event.js','libs/zepto/src/callbacks.js','libs/zepto/src/ajax.js','libs/zepto/src/form.js','libs/zepto/src/fx.js','libs/zepto/src/fx_methods.js','libs/zepto/src/assets.js','libs/zepto/src/data.js','libs/zepto/src/selector.js','libs/zepto/src/touch.js','src/zepto/zepto.module.end.js'],//
+                src: ['src/zepto/zepto.module.start.js','libs/zepto/src/zepto.js','libs/zepto/src/event.js','libs/zepto/src/callbacks.js','libs/zepto/src/ajax.js','libs/zepto/src/form.js','libs/zepto/src/fx.js','libs/zepto/src/fx_methods.js','libs/zepto/src/assets.js','libs/zepto/src/data.js','libs/zepto/src/selector.js','libs/zepto/src/touch2.js','src/zepto/zepto.module.end.js'],//
                 dest: 'dist/zepto.module.js'
             },
             ajaxfileupload: {
